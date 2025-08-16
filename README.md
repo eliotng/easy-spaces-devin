@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # easy-spaces-devin
 
 Next.js port of the Easy Spaces LWC sample using Tailwind CSS and a GraphQL API.
@@ -41,3 +42,7 @@ Next.js port of the Easy Spaces LWC sample using Tailwind CSS and a GraphQL API.
   - completeDesigner(input)
 
 The API uses an in-memory store by default. You can later seed it with data from the source repository.
+||||||| empty tree
+=======
+# easy-spaces-devin
+>>>>>>> origin/main
