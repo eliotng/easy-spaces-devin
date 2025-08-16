@@ -22,5 +22,8 @@ out
 .env.test.local
 .env.production.local
 
+# TS build info
+tsconfig.tsbuildinfo
+
 # Misc
 .DS_Store
