@@ -4,8 +4,13 @@ import { ApolloClient, InMemoryCache, HttpLink, ApolloProvider } from "@apollo/c
 import { ReactNode } from "react";
 
 export function ApolloWrapper({ children }: { children: ReactNode }) {
+  const uri =
+    typeof window !== "undefined" && window.location?.origin
+      ? `${window.location.origin}/api/graphql`
+      : "/api/graphql";
+
   const client = new ApolloClient({
-    link: new HttpLink({ uri: "/api/graphql" }),
+    link: new HttpLink({ uri }),
     cache: new InMemoryCache()
   });
 
