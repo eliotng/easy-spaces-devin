@@ -31,7 +31,7 @@ export default function ReservationsPage() {
     }
   }, [lastFlowStatus, refetch]);
 
-  const records = data?.getOpenReservations ?? [];
+  const records = useMemo(() => data?.getOpenReservations ?? [], [data]);
   const reservations = useMemo(() => {
     return records.map((r: any) => {
       const muted = selectedRecId ? r.id !== selectedRecId : false;
