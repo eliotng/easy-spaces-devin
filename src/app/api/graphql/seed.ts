@@ -1,8 +1,10 @@
 import marketsJson from "../../../data/sfdc/Market__cs.json";
 import reservationsJson from "../../../data/sfdc/Reservation__cs.json";
+import spacesJson from "../../../data/sfdc/Space__cs.json";
 
 export type SeedMarket = { id: string; name: string; totalDailyBookingRate?: number };
 export type SeedReservation = { id: string; startDate: string; endDate: string; status: string; marketId: string; spaceId: string; customerId: string };
+export type SeedSpace = { id: string; name: string; type: string[]; category?: string; minCapacity?: number; maxCapacity?: number; predictedBookingRate?: number; dailyBookingRate?: number; marketId: string };
 
 type MarketRecord = {
   attributes: { type: string; referenceId: string };
@@ -16,6 +18,18 @@ type ReservationRecord = {
   Start_Date__c: string;
   End_Date__c: string;
   Status__c: string;
+};
+
+type SpaceRecord = {
+  attributes: { type: string; referenceId: string };
+  Name: string;
+  Category__c?: string;
+  Type__c?: string;
+  Minimum_Capacity__c?: number;
+  Maximum_Capacity__c?: number;
+  Predicted_Booking_Rate__c?: number;
+  Daily_Booking_Rate__c?: number;
+  Market__c: string;
 };
 
 function refToId(ref: string) {
@@ -47,5 +61,21 @@ export function seedReservations(): SeedReservation[] {
   }));
 }
 
+export function seedSpaces(): SeedSpace[] {
+  const records = (spacesJson as any).records as SpaceRecord[];
+  return records.map((s) => ({
+    id: refToId(s.attributes.referenceId),
+    name: s.Name,
+    type: (s.Type__c ? s.Type__c.split(";").map((t) => t.trim()).filter(Boolean) : []),
+    category: s.Category__c,
+    minCapacity: s.Minimum_Capacity__c,
+    maxCapacity: s.Maximum_Capacity__c,
+    predictedBookingRate: s.Predicted_Booking_Rate__c,
+    dailyBookingRate: s.Daily_Booking_Rate__c,
+    marketId: refToId(s.Market__c)
+  }));
+}
+
 export const seededMarkets = seedMarkets();
 export const seededReservations = seedReservations();
+export const seededSpaces = seedSpaces();

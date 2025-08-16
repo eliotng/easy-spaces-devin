@@ -1,0 +1,32 @@
+{
+  "records": [
+    {
+      "attributes": {
+        "type": "Space__c",
+        "referenceId": "Space__cRef1"
+      },
+      "Name": "Coffee Bar",
+      "Category__c": "Cafe",
+      "Type__c": "Indoor;Conversation Starter",
+      "Minimum_Capacity__c": 2,
+      "Maximum_Capacity__c": 10,
+      "Predicted_Booking_Rate__c": 0.35,
+      "Daily_Booking_Rate__c": 150,
+      "Market__c": "@Market__cRef6"
+    },
+    {
+      "attributes": {
+        "type": "Space__c",
+        "referenceId": "Space__cRef2"
+      },
+      "Name": "Rooftop Lounge",
+      "Category__c": "Lounge",
+      "Type__c": "Outdoor;Relaxing",
+      "Minimum_Capacity__c": 5,
+      "Maximum_Capacity__c": 30,
+      "Predicted_Booking_Rate__c": 0.5,
+      "Daily_Booking_Rate__c": 400,
+      "Market__c": "@Market__cRef6"
+    }
+  ]
+}

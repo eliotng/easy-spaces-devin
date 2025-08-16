@@ -1,5 +1,5 @@
 import { createYoga, createSchema } from "graphql-yoga";
-import { seededMarkets as seededMarketsRaw, seededReservations as seededReservationsRaw } from "./seed";
+import { seededMarkets as seededMarketsRaw, seededReservations as seededReservationsRaw, seededSpaces as seededSpacesRaw } from "./seed";
 
 type Customer = { id: string; name: string; email?: string; city?: string; state?: string; status?: string; type: "Contact" | "Lead" };
 type Market = { id: string; name: string; totalDailyBookingRate?: number };
@@ -13,11 +13,7 @@ const customers: Customer[] = [
 
 const markets: Market[] = seededMarketsRaw.map(m => ({ id: m.id, name: m.name }));
 
-const spaces: Space[] = [
-  { id: "space-1", name: "Cafe Corner", type: ["Indoor", "Conversation Starter"], category: "Cafe", minCapacity: 2, maxCapacity: 10, marketId: "market-1" },
-  { id: "space-2", name: "Rooftop Lounge", type: ["Outdoor", "Relaxing"], category: "Lounge", minCapacity: 5, maxCapacity: 30, marketId: "market-1" },
-  { id: "space-3", name: "Game Room", type: ["Energizing", "Large Groups", "Indoor"], category: "Games", minCapacity: 4, maxCapacity: 20, marketId: "market-2" }
-];
+const spaces: Space[] = seededSpacesRaw.map(s => ({ ...s }));
 
 const reservations: Reservation[] = seededReservationsRaw.map(r => ({ ...r }));
 
