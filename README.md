@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # easy-spaces-devin
 
 Next.js port of the Easy Spaces LWC sample using Tailwind CSS and a GraphQL API.
