@@ -1,5 +1,4 @@
 import { createYoga, createSchema } from "graphql-yoga";
-import { NextRequest } from "next/server";
 
 type Customer = { id: string; name: string; email?: string; city?: string; state?: string; status?: string; type: "Contact" | "Lead" };
 type Market = { id: string; name: string; totalDailyBookingRate?: number };
@@ -117,12 +116,18 @@ const resolvers = {
 
 const schema = createSchema({ typeDefs, resolvers });
 
-const yoga = createYoga<{
-  req: NextRequest;
-  params: { path: string[] };
-}>({
+const yoga = createYoga({
   schema,
-  graphqlEndpoint: "/api/graphql"
+  graphqlEndpoint: "/api/graphql",
+  fetchAPI: { Request, Response }
 });
 
-export { yoga as GET, yoga as POST };
+export function GET(request: Request) {
+  return yoga(request);
+}
+export function POST(request: Request) {
+  return yoga(request);
+}
+export function OPTIONS(request: Request) {
+  return yoga(request);
+}
